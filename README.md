@@ -31,6 +31,17 @@ or opening a Swiss-Army-knife tool.
 - **Undo** — Ctrl+Z restores the previous tags after a save or batch apply
 - **Sort + search** — filter the list by name, artist, album, or title
 
+## Download
+
+**Windows installer:** [Latest release](https://github.com/tsiopoulostomas1-del/TagIt/releases/latest)
+
+> The installer isn't code-signed, so Windows may show a SmartScreen warning
+> the first time you run it. Click **More info** → **Run anyway**. This is
+> expected for an unsigned open-source project and doesn't indicate any
+> problem with the file.
+
+**From source:** see [Install](#install) below.
+
 ## Supported formats
 
 Reading and writing:
