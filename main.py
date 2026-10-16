@@ -5,15 +5,30 @@ from PySide6.QtGui import QFont
 from app.window import MainWindow
 
 
+def _resource_path(relative: str) -> str:
+    """
+    Resolve a path both when running from source and when running from a
+    PyInstaller bundle. PyInstaller extracts bundled data into sys._MEIPASS.
+    """
+    if hasattr(sys, "_MEIPASS"):
+        base = sys._MEIPASS
+    else:
+        base = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base, relative)
+
+
 def main():
     app = QApplication(sys.argv)
     app.setApplicationName("TagIt")
     app.setFont(QFont("Segoe UI Variable Text", 10))
 
-    here = os.path.dirname(os.path.abspath(__file__))
-    qss_path = os.path.join(here, "app", "style.qss")
-    with open(qss_path, "r", encoding="utf-8") as f:
-        app.setStyleSheet(f.read())
+    qss_path = _resource_path(os.path.join("app", "style.qss"))
+    try:
+        with open(qss_path, "r", encoding="utf-8") as f:
+            app.setStyleSheet(f.read())
+    except Exception as e:
+        # Don't crash if the stylesheet is missing — just run unstyled
+        print(f"Could not load stylesheet: {e}", flush=True)
 
     window = MainWindow()
     window.show()
