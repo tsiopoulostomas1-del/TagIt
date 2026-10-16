@@ -45,3 +45,7 @@ logo.jpeg
 
 # PyInstaller build outputs
 *.spec
+
+# Installer build output
+installer/*.exe
+installer/*.bin
